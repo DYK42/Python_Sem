@@ -19,14 +19,44 @@
 # 2
 # Напишите программу для. проверки истинности утверждения ¬(X ⋁ Y ⋁ Z) = ¬X ⋀ ¬Y ⋀ ¬Z для всех значений предикат.
 
-def checkPredicate(x, y, z):
-    return (not (x or y or z)) == (not x and not y and not z)
+# def checkPredicate(x, y, z):
+#     return (not (x or y or z)) == (not x and not y and not z)
+#
+# x = int(input('Введите целое число X: '))
+# y = int(input('Введите целое число Y: '))
+# z = int(input('Введите целое число Z: '))
+#
+# if checkPredicate(x, y, z):
+#     print('Утверждение истинно!')
+# else:
+#     print('Утверждение ложно!')
 
-x = int(input('Введите целое число X: '))
-y = int(input('Введите целое число Y: '))
-z = int(input('Введите целое число Z: '))
+# 3
+# Напишите программу, которая принимает на вход координаты точки (X и Y), причём X ≠ 0 и Y ≠ 0 и
+# выдаёт номер четверти плоскости, в которой находится эта точка (или на какой оси она находится).
+# Пример:
+# - x=34; y=-30 -> 4
+# - x=2; y=4-> 1
+# - x=-34; y=-30 -> 3
 
-if checkPredicate(x, y, z):
-    print('Утверждение истинно!')
-else:
-    print('Утверждение ложно!')
+def get_sector(x, y):
+    if x != 0 and y != 0:
+        if x > 0 and y > 0:
+            print('Четверть № 1')
+        elif x < 0 and y > 0:
+            print('Четверть № 2')
+        elif x < 0 and y < 0:
+            print('Четверть № 3')
+        elif x > 0 and y < 0:
+            print('Четверть № 4')
+    else:
+        if x != 0 and y == 0:
+            print('Ось Y')
+        elif x == 0 and y != 0:
+            print('Ось X')
+        else:
+            print('Точка начала координат')
+
+x = int(input('Введите координату X: '))
+y = int(input('Введите координату Y: '))
+get_sector(x, y)
