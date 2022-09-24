@@ -39,24 +39,45 @@
 # - x=2; y=4-> 1
 # - x=-34; y=-30 -> 3
 
-def get_sector(x, y):
-    if x != 0 and y != 0:
-        if x > 0 and y > 0:
-            print('Четверть № 1')
-        elif x < 0 and y > 0:
-            print('Четверть № 2')
-        elif x < 0 and y < 0:
-            print('Четверть № 3')
-        elif x > 0 and y < 0:
-            print('Четверть № 4')
-    else:
-        if x != 0 and y == 0:
-            print('Ось Y')
-        elif x == 0 and y != 0:
-            print('Ось X')
-        else:
-            print('Точка начала координат')
+# def get_sector(x, y):
+#     if x != 0 and y != 0:
+#         if x > 0 and y > 0:
+#             print('Четверть № 1')
+#         elif x < 0 and y > 0:
+#             print('Четверть № 2')
+#         elif x < 0 and y < 0:
+#             print('Четверть № 3')
+#         elif x > 0 and y < 0:
+#             print('Четверть № 4')
+#     else:
+#         if x != 0 and y == 0:
+#             print('Ось Y')
+#         elif x == 0 and y != 0:
+#             print('Ось X')
+#         else:
+#             print('Точка начала координат')
+#
+# x = int(input('Введите координату X: '))
+# y = int(input('Введите координату Y: '))
+# get_sector(x, y)
 
-x = int(input('Введите координату X: '))
-y = int(input('Введите координату Y: '))
-get_sector(x, y)
+# 4
+# Напишите программу, которая по заданному номеру четверти, показывает диапазон
+# возможных координат точек в этой четверти (x и y).
+
+def get_range_sector(num):
+    if 0 < num < 5:
+        match num:
+            case 1:
+                print('Диапазон (+x; +y)')
+            case 2:
+                print('Диапазон (-x; +y)')
+            case 3:
+                print('Диапазон (-x; -y)')
+            case 4:
+                print('Диапазон (+x; -y)')
+    else:
+        print("Превышение количества. Число может быть задано от 1 до 4.")
+
+number = int(input('Введите номер четверти: '))
+get_range_sector(number)
