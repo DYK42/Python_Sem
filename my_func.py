@@ -1,14 +1,29 @@
+# if __name__ == '__main__':
+import random
+import string
 
-def get_input(mode = 0):
+
+def get_input(mode='i'):
     match mode:
-        case 0:
-            value = int(input('Введите целое число: '))
-            return value
-        case 1:
-            value = float(input('Введите дробное число: '))
-            return value
-        case 2:
-            value = input('Введите текст: ')
-            return value
+        case 'i':
+            return int(input('Введите целое число: '))
+        case 'f':
+            return float(input('Введите вещественное число: '))
+        case 's':
+            return input('Введите текст: ')
+        case _:
+            print('Настройка не задана!')
+
+
+def get_list(mode='i'):
+    num = int(input('Введите размер списка: '))
+    match mode:
+        case 'i':
+            return list(range(num))
+        case 'f':
+            return [round(random.random() + random.randint(0, 100), 2) for i in range(num)]
+        case 's':
+            return [''.join(random.choice(string.ascii_letters) for i in range(random.randrange(0, 5))) for j in
+                    range(num)]
         case _:
             print('Настройка не задана!')
