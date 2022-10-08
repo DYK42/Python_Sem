@@ -49,3 +49,7 @@ def get_list(mode='i'):
                         l.append(value)
         case _:
             print('Настройка не задана!')
+
+
+
+
