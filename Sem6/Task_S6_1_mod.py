@@ -9,43 +9,15 @@
 # 1+2*3 => 7;
 # (1+2)*3 => 9;
 
-from enum import Enum
+import re
 
-
-class Prior(Enum):
-    PLUS = 1
-    MINUS = 1
-    MULTI = 2
-    DIV = 2
-    POW = 3
-
-exp = '(3 + 5) * ((7 - 9) / 3)'
-# exp = '((12 + 23 * 2 - 43) * 31) * 10'  #   = 4650
+exp = '((3 +(7-77)*10/(5+25)) *((7- 9) /3))/45 + ((((34+5)*5)+6)/78)'
 # exp = input('Введите арифметическое выражение: ')
-lst = exp.split()
-
+lst = re.findall(r'\d+|[()+\-*/]', exp)
 print(exp)
 
 result = 0
 size = len(lst)
-i = 0
-
-while i < size:
-    if not lst[i].isdigit():
-        # print(f'{i} {lst[i]}')
-        if len(lst[i]) > 1:
-            if '(' in lst[i]:
-                temp = lst[i][1:]
-                lst[i] = '('
-                lst.insert(i + 1, temp)
-                size += 1
-            if ')' in lst[i]:
-                # print(lst[i])
-                temp = lst[i][:-1]
-                lst[i] = temp
-                lst.insert(i + 1, ')')
-                size += 1
-    i += 1
 
 print(lst)
 
@@ -67,11 +39,8 @@ def operation(op, val):
 char = []
 num = []
 i = 0
-result = 0
 
 while i < len(lst):
-    # print(num)
-    # print(char)
     if lst[i].isdigit():
         num.append(lst[i])
     else:
@@ -143,15 +112,13 @@ while i < len(lst):
                     val = num[-2:]
                     num = num[:-2]
                     num.append(operation(char[-1], val))
-                    char = char[:-2]
-                    # i -= 1
-    # print(lst)
-    # print(num)
-    # print(char)
+                    if char[-2] == '(':
+                        char = char[:-2]
+                    else:
+                        char = char[:-1]
+                        i -= 1
     if i == len(lst) - 1:
         while len(num) > 1:
-            # print(f'{num} {len(num)}')
-            # print(char)
             val = num[-2:]
             num = num[:-2]
             num.append(operation(char[-1], val))
@@ -161,9 +128,6 @@ while i < len(lst):
             break
     else:
         i += 1
-    # print(num)
 
-# print(num)
-# print(char)
-print(result)
-print(eval(exp))
+print('{:10}: {}'.format('Result', result))
+print('{:10}: {}'.format('Eval', eval(exp)))
