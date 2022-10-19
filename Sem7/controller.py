@@ -9,16 +9,16 @@ def button_click():
     task = view.get_task()
     match task:
         case 1:
-            size = int(input('Каким размером: '))
-            name = input('Под каким именем сохранить: ')
+            size = view.get_size()
+            name = view.get_name_export()
             if not name:
                 name = 'phone_directory'
             export_phone.init(name)
             export_phone.write_to_file(generating.get_phone_directory(size), generating.columns)
         case 2:
-            name = input('Из какого файла брать данные: ')
-            # if not name:
-            #     name = 'phone_directory'
+            name = view.get_name_import()
+            if not name:
+                name = 'phone_directory.csv'
             if not os.path.exists(name):
                 print("Указанный файл не существует!")
             else:

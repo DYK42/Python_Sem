@@ -15,9 +15,12 @@ columns = ['id', 'first_name', 'last_name', 'birthday', 'work', 'phone']
 def get_phone_directory(num):
     lst = []
     for x in range(num):
-        lst.append({'id': x, 'first_name': f'FirstName{x}', 'last_name': f'LastName{x}',
-                    'birthday': get_random_datetime().strftime("%d/%m/%Y"), 'work': f'Work{x}',
-                    'phone': [random.randrange(100000, 1000000) for i in range(random.randrange(1, 3))]})
+        # lst.append({'id': x, 'first_name': f'FirstName{x}', 'last_name': f'LastName{x}',
+        #             'birthday': get_random_datetime().strftime("%d/%m/%Y"), 'work': f'Work{x}',
+        #             'phone': [random.randrange(100000, 1000000) for i in range(random.randrange(1, 3))]})
+        lst.append({a: f'{a.upper().replace("_", "")}{x}'
+        if not 'phone' in a else [random.randrange(100000, 1000000)
+                                  for i in range(random.randrange(1, 3))] for a in columns})
     return lst
 
 
