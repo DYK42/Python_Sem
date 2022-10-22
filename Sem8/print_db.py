@@ -15,6 +15,7 @@ def print_table():
     cur = conn.cursor()
     cur.execute('SELECT workers_id, first_name, last_name FROM workers')
     rows = cur.fetchall()
+    conn.close()
     for row in rows:
         print(*row)
 
@@ -31,13 +32,13 @@ def print_worker(num):
         rows = list(cur.fetchall())
         cur.execute(f'SELECT position_id, hire_date FROM workers_post WHERE workers_id = {num}')
         rows += list(cur.fetchall())
+        conn.close()
         result = []
         for i, row in enumerate(rows):
             row = list(row)
             if i > 0:
                 row[0] = variables.positions[int(row[0])]
             result += row
-        # print(*variables.columns_workers)
         print(*result)
 
 
