@@ -3,9 +3,11 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
-.idea
-log.csv
 Stat.py
+log.csv
+my_data.py
+
+.idea
 
 # User-specific files
 *.rsuser
