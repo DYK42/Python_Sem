@@ -7,7 +7,7 @@ import telebot
 from telebot import types
 import logger
 
-token = "1681027383:AAE4PHlumwlOqNx2ruWx8mcmMR8CCLtTIhc"
+token = my_data.tele_token
 bot = telebot.TeleBot(token)
 
 
@@ -19,6 +19,9 @@ def start_bot(message):
     # kb.add(btn1)
     bot.send_message(message.chat.id,
                      text="{0.first_name}! Введите выражение многочлена.".format(
+                         message.from_user), reply_markup=kb)
+    bot.send_message(message.chat.id,
+                     text="Ввести нужно два многочлена отдельными сообщениями. После чего появится кнопка для рассчета суммы.".format(
                          message.from_user), reply_markup=kb)
 
 
